@@ -130,8 +130,8 @@ This project is developed for educational purposes as part of a class project. A
 
 ## 👩‍💻 Team Members
 
-- **Marina Pollak** - Project Lead & Repository Owner
-- *Add team members as they join*
+- **Marina Pollak** - Project Developer Lead & Repository Owner
+- **Max Polancic** - Project Developer 1
 
 ## 🎖️ Acknowledgments
 
