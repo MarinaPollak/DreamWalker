@@ -25,3 +25,4 @@ Thumbs.db
 *.vcxproj.filters
 *.suo
 *.db
+Content/Plugins/BP_SupabaseTest.uasset
