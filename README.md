@@ -38,14 +38,14 @@ To get a local copy of this project running, follow these steps:
     * Open the project using the Unreal Engine Editor.
 
 ### 🤝 Contributions
-   @Crevlm - project owner
-   @MarinaPollak - developer
-   @MatthewLM917 - developer
-   @Miagham - developer
-   @DanyDaDonn
-   @camron-coder 
-   @Jiocolon313
-   @JAMorales1304
+  * @Crevlm - project owner
+  * @MarinaPollak - developer
+  * @MatthewLM917 - developer
+  * @Miagham - developer
+  * @DanyDaDonn
+  * @camron-coder 
+  * @Jiocolon313
+  * @JAMorales1304
    
 
 This project is deeply meaningful, and contributions—whether in code, art, or documentation—are highly welcome!
