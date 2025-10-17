@@ -37,15 +37,22 @@ To get a local copy of this project running, follow these steps:
     * **If the project uses C++:** **Right-click** the `DreamWalker.uproject` file and select **"Generate Visual Studio Project Files."**
     * Open the project using the Unreal Engine Editor.
 
-### 🤝 Contributions
-  * @Crevlm - project owner
-  * @MarinaPollak - developer
-  * @MatthewLM917 - developer
-  * @Miagham - developer
-  * @DanyDaDonn
-  * @camron-coder 
-  * @Jiocolon313
-  * @JAMorales1304
+### 🤝 Project Team & Contributions
+
+We are grateful for all contributors who have helped bring the DreamWalker project to life.
+
+| Role | Contributor | GitHub Profile |
+| :--- | :--- | :--- |
+| **Project Owner** | @Crevlm | [Crevlm](https://github.com/Crevlm) |
+| Developer | @MarinaPollak | [MarinaPollak](https://github.com/MarinaPollak) |
+| Developer | @MatthewLM917 | [MatthewLM917](https://github.com/MatthewLM917) |
+| Developer | @Miagham | [Miagham](https://github.com/Miagham) |
+| Developer | @DanyDaDonn | [DanyDaDonn](https://github.com/DanyDaDonn) |
+| Developer | @camron-coder | [camron-coder](https://github.com/camron-coder) |
+| Developer | @Jiocolon313 | [Jiocolon313](https://github.com/Jiocolon313) |
+| Developer | @JAMorales1304 | [JAMorales1304](https://github.com/JAMorales1304) |
+
+Before submitting a Pull Request, please read the brief **MIT License** to understand the terms of your contribution.
    
 
 This project is deeply meaningful, and contributions—whether in code, art, or documentation—are highly welcome!
