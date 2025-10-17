@@ -63,4 +63,3 @@ Before submitting a Pull Request, please read the brief **MIT License** to under
 
 This project is distributed under the **MIT License**. See the `LICENSE` file for more information.
 
-*(Your GitHub profile name here)*
