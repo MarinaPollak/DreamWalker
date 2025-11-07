@@ -1,16 +1,18 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // Method to load the Bedroom Scene when Start button is clicked
+    public void StartGame()
     {
-        
+        SceneManager.LoadScene("BedroomScene");
     }
 
-    // Update is called once per frame
-    void Update()
+    // Method to quit the game when Quit button is clicked
+    public void QuitGame()
     {
-        
+        Debug.Log("Quit Game");
+        Application.Quit();
     }
 }
