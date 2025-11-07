@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class MainMenu : MonoBehaviour
 {
@@ -13,6 +16,13 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
         Debug.Log("Quit Game");
+
+        #if UNITY_EDITOR
+        // Exit play mode in Unity Editor
+        EditorApplication.isPlaying = false;
+        #else
+        // Quit the application when built
         Application.Quit();
+        #endif
     }
 }
