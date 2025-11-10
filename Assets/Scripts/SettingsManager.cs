@@ -71,13 +71,29 @@ public class SettingsManager : MonoBehaviour
 
     void UpdateTabButtonColors(Button activeButton, Button inactiveButton)
     {
+        // Active tab - Navy blue background
         ColorBlock activeColors = activeButton.colors;
-        activeColors.normalColor = new Color(0.7f, 0.7f, 0.7f);
+        activeColors.normalColor = new Color(0.1f, 0.2f, 0.5f, 0.9f); // Navy blue with high opacity
         activeButton.colors = activeColors;
 
+        // Set active tab text to white
+        TextMeshProUGUI activeText = activeButton.GetComponentInChildren<TextMeshProUGUI>();
+        if (activeText != null)
+        {
+            activeText.color = Color.white;
+        }
+
+        // Inactive tab - Glass-like appearance
         ColorBlock inactiveColors = inactiveButton.colors;
-        inactiveColors.normalColor = Color.white;
+        inactiveColors.normalColor = new Color(0.95f, 0.95f, 1f, 0.35f); // Semi-transparent glass
         inactiveButton.colors = inactiveColors;
+
+        // Set inactive tab text to darker color for visibility
+        TextMeshProUGUI inactiveText = inactiveButton.GetComponentInChildren<TextMeshProUGUI>();
+        if (inactiveText != null)
+        {
+            inactiveText.color = new Color(0.2f, 0.2f, 0.2f, 1f); // Dark gray
+        }
     }
 
     // Audio Settings
