@@ -14,6 +14,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BedroomScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Camron/_Scenes/Opening.unity
+    guid: ade703925f4bb1b479df90898b61ab94
+  - enabled: 1
+    path: Assets/Camron/_Scenes/Tile2.unity
+    guid: e44f1f90e3960454d8751d3af27568cd
+  - enabled: 1
+    path: Assets/Camron/_Scenes/Tile3.unity
+    guid: f022c8072345c1c45ab0a648da949d48
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
