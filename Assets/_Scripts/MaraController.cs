@@ -11,8 +11,11 @@ public class MaraController : MonoBehaviour
 
     InputAction move;
 
+    Rigidbody rb;
+
     void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         playerController = new PlayerController();
         move = playerController.Player.Move;
     }
@@ -22,16 +25,26 @@ public class MaraController : MonoBehaviour
         move.Enable();
     }
 
+    private void OnDisable()
+    {
+        move.Disable();
+    }
     // Update is called once per frame
     void Update()
     {
-        move.Disable();
+        
     }
 
     void FixedUpdate()
     {
+        HandleMovement();
+    }
+
+    void HandleMovement()
+    {
         Vector2 input = move.ReadValue<Vector2>();
         Vector3 direction = (input.x * transform.right);
+        //rb.linearVelocity = input * speed;
 
         transform.position = transform.position + (direction * speed * Time.deltaTime);
     }
