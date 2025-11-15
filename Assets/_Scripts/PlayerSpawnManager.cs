@@ -8,7 +8,7 @@ public class PlayerSpawnManager : MonoBehaviour
     {
         if (NextSpawnID == "") return;
 
-        SpawnPoint[] points = FindObjectsOfType<SpawnPoint>();
+        SpawnPoint[] points = FindObjectsByType<SpawnPoint>(FindObjectsSortMode.None);
         foreach (var point in points)
         {
             if (point.spawnID == NextSpawnID)

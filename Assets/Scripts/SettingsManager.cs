@@ -9,10 +9,12 @@ public class SettingsManager : MonoBehaviour
     [Header("Panels")]
     public GameObject audioPanel;
     public GameObject displayPanel;
+    public GameObject dialoguePanel;
 
     [Header("Tab Buttons")]
     public Button audioTabButton;
     public Button displayTabButton;
+    public Button dialogueTabButton;
 
     [Header("Audio Settings")]
     public Slider masterVolumeSlider;
@@ -36,6 +38,10 @@ public class SettingsManager : MonoBehaviour
         // Setup tab buttons
         audioTabButton.onClick.AddListener(ShowAudioPanel);
         displayTabButton.onClick.AddListener(ShowDisplayPanel);
+        if (dialogueTabButton != null)
+        {
+            dialogueTabButton.onClick.AddListener(ShowDialoguePanel);
+        }
 
         // Setup audio sliders BEFORE loading settings
         masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
@@ -55,44 +61,65 @@ public class SettingsManager : MonoBehaviour
     {
         audioPanel.SetActive(true);
         displayPanel.SetActive(false);
+        if (dialoguePanel != null) dialoguePanel.SetActive(false);
 
         // Update button visuals
-        UpdateTabButtonColors(audioTabButton, displayTabButton);
+        UpdateTabButtonColors(audioTabButton, displayTabButton, dialogueTabButton);
     }
 
     void ShowDisplayPanel()
     {
         audioPanel.SetActive(false);
         displayPanel.SetActive(true);
+        if (dialoguePanel != null) dialoguePanel.SetActive(false);
 
         // Update button visuals
-        UpdateTabButtonColors(displayTabButton, audioTabButton);
+        UpdateTabButtonColors(displayTabButton, audioTabButton, dialogueTabButton);
     }
 
-    void UpdateTabButtonColors(Button activeButton, Button inactiveButton)
+    void ShowDialoguePanel()
+    {
+        audioPanel.SetActive(false);
+        displayPanel.SetActive(false);
+        if (dialoguePanel != null) dialoguePanel.SetActive(true);
+
+        // Update button visuals
+        UpdateTabButtonColors(dialogueTabButton, audioTabButton, displayTabButton);
+    }
+
+    void UpdateTabButtonColors(Button activeButton, params Button[] inactiveButtons)
     {
         // Active tab - Navy blue background
-        ColorBlock activeColors = activeButton.colors;
-        activeColors.normalColor = new Color(0.1f, 0.2f, 0.5f, 0.9f); // Navy blue with high opacity
-        activeButton.colors = activeColors;
-
-        // Set active tab text to white
-        TextMeshProUGUI activeText = activeButton.GetComponentInChildren<TextMeshProUGUI>();
-        if (activeText != null)
+        if (activeButton != null)
         {
-            activeText.color = Color.white;
+            ColorBlock activeColors = activeButton.colors;
+            activeColors.normalColor = new Color(0.1f, 0.2f, 0.5f, 0.9f); // Navy blue with high opacity
+            activeButton.colors = activeColors;
+
+            // Set active tab text to white
+            TextMeshProUGUI activeText = activeButton.GetComponentInChildren<TextMeshProUGUI>();
+            if (activeText != null)
+            {
+                activeText.color = Color.white;
+            }
         }
 
-        // Inactive tab - Glass-like appearance
-        ColorBlock inactiveColors = inactiveButton.colors;
-        inactiveColors.normalColor = new Color(0.95f, 0.95f, 1f, 0.35f); // Semi-transparent glass
-        inactiveButton.colors = inactiveColors;
-
-        // Set inactive tab text to darker color for visibility
-        TextMeshProUGUI inactiveText = inactiveButton.GetComponentInChildren<TextMeshProUGUI>();
-        if (inactiveText != null)
+        // Inactive tabs - Glass-like appearance
+        foreach (Button inactiveButton in inactiveButtons)
         {
-            inactiveText.color = new Color(0.2f, 0.2f, 0.2f, 1f); // Dark gray
+            if (inactiveButton != null)
+            {
+                ColorBlock inactiveColors = inactiveButton.colors;
+                inactiveColors.normalColor = new Color(0.95f, 0.95f, 1f, 0.35f); // Semi-transparent glass
+                inactiveButton.colors = inactiveColors;
+
+                // Set inactive tab text to darker color for visibility
+                TextMeshProUGUI inactiveText = inactiveButton.GetComponentInChildren<TextMeshProUGUI>();
+                if (inactiveText != null)
+                {
+                    inactiveText.color = new Color(0.2f, 0.2f, 0.2f, 1f); // Dark gray
+                }
+            }
         }
     }
 
