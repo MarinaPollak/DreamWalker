@@ -1,0 +1,26 @@
+using UnityEngine;
+using UnityEngine.UI;
+public class PuzzleTile : MonoBehaviour
+{
+    public int correctIndex;
+    public int currentIndex;
+    public Image image;
+
+    [HideInInspector] public int row;
+    [HideInInspector] public int col;
+
+    private SlidingPuzzle manager;
+    private Button button;
+
+    void Start()
+    {
+        manager = FindObjectOfType<SlidingPuzzle>();
+        button = GetComponent<Button>();
+        button.onClick.AddListener(OnTileClicked);
+    }
+
+    void OnTileClicked()
+    {
+        manager.TileClicked(this);
+    }
+}

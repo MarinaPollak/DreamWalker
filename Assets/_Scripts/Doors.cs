@@ -36,4 +36,12 @@ public class Doors : MonoBehaviour
         // Fade in
         yield return StartCoroutine(SceneFader.Instance.FadeIn());
     }
+
+    public GameObject puzzleUI;
+
+    void OnMouseDown()
+    {
+        bool isOpen = puzzleUI.activeSelf;
+        puzzleUI.SetActive(!isOpen);  // Toggle open/close
+    }
 }
