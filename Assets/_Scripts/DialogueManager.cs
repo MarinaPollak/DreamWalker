@@ -60,10 +60,14 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        // Handle continuing to next line in the dialogue when pressing Space or Enter
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+        // Only allow continuing if there are no choices currently displayed
+        if (currentStory.currentChoices.Count == 0)
         {
-            ContinueStory();
+            // Handle continuing to next line with Enter or left mouse click
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
+            {
+                ContinueStory();
+            }
         }
     }
 

@@ -1,40 +1,24 @@
-// Sample Dialogue - DreamWalker
-// This is placeholder text that will be replaced with actual dialogue later
+// Scene: Apartment Entrance - DreamWalker
+// Mara brings Selene home for the first time
 
--> main
+-> apartment_entrance
 
-=== main ===
-Hello, traveler. Welcome to the dream realm.
-I sense you have many questions.
-* [Who are you?]
-    -> who_are_you
-* [Where am I?]
-    -> where_am_i
-* [I need to go.]
-    -> goodbye
+=== apartment_entrance ===
+MARA: (sighs) Well... here it is. Home sweet... disaster.
 
-=== who_are_you ===
-I am a guide in this realm between waking and sleeping.
-Some call me the Keeper of Dreams.
-* [Tell me more about this place.]
-    -> where_am_i
-* [I should continue my journey.]
-    -> goodbye
+SELENE: (Purrs softly)
 
-=== where_am_i ===
-You are walking between worlds, in the space where dreams take form.
-This is a place of memories, fears, and hopes given shape.
-* [How do I leave?]
-    -> how_to_leave
-* [Thank you for the explanation.]
-    -> goodbye
+MARA: I'm sorry it's a bit of a mess in here... keeping up with cleaning is... well... not my strong suit.
 
-=== how_to_leave ===
-To leave, you must first understand why you came.
-The path forward will reveal itself when you are ready.
-* [I understand.]
-    -> goodbye
+MARA: There's a little bed over by the window... it used to be Mimi's. You would have liked her, but she passed away a few weeks ago.
 
-=== goodbye ===
-Safe travels, dreamer. May you find what you seek.
--> END
+MARA: This is the 'Living Room' if you could call it that in this tiny place. Kitchen's over there. I've been meaning to cook something real, but cereal's a personality trait at this point.
+
+MARA: (glances around, embarrassed) It's not much... but it's mine.
+
+MARA: And, uh... I guess it's yours now too.
+
+* [Look around the apartment]
+    -> END
+* [Check on Selene]
+    -> END
