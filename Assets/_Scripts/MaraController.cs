@@ -20,7 +20,7 @@ public class MaraController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        //anim.GetComponent<Animator>();
         playerController = new PlayerController();
         move = playerController.Player.Move;
     }
@@ -51,18 +51,16 @@ public class MaraController : MonoBehaviour
         Vector2 input = move.ReadValue<Vector2>();
         Vector3 direction = (input.x * transform.right);
         //rb.linearVelocity = input * speed;
-        if(input.x > 0)
+        /*if(input.x > 0)
         {
             anim.speed = 0;
-            anim.SetBool("WalkRight", true);
-            anim.SetBool("WalkLeft", false);
+            anim.Play("WalkLeft");
         }
         else if(input.x < 0)
         {
             anim.speed = 0;
-            anim.SetBool("WalkRight", false);
-            anim.SetBool("WalkLeft", true);
-        }
+            anim.Play("WalkLeft");
+        }*/
         transform.position = transform.position + (direction * speed * Time.deltaTime);
     }
 }
