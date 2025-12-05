@@ -85,6 +85,36 @@ public class AddDialoguePanelToScenes : MonoBehaviour
         panelRect.offsetMin = Vector2.zero;
         panelRect.offsetMax = Vector2.zero;
 
+        // Create Character Portrait Container
+        GameObject portraitContainer = new GameObject("CharacterPortrait");
+        portraitContainer.transform.SetParent(dialoguePanel.transform, false);
+
+        Image portraitImage = portraitContainer.AddComponent<Image>();
+        portraitImage.color = new Color(0.5f, 0.8f, 1f, 1f); // Placeholder light blue
+
+        RectTransform portraitRect = portraitContainer.GetComponent<RectTransform>();
+        portraitRect.anchorMin = new Vector2(0.02f, 0.4f);
+        portraitRect.anchorMax = new Vector2(0.22f, 0.95f);
+        portraitRect.offsetMin = Vector2.zero;
+        portraitRect.offsetMax = Vector2.zero;
+
+        // Create Character Name Text
+        GameObject nameTextObj = new GameObject("CharacterName");
+        nameTextObj.transform.SetParent(dialoguePanel.transform, false);
+
+        TextMeshProUGUI nameText = nameTextObj.AddComponent<TextMeshProUGUI>();
+        nameText.text = "MARA";
+        nameText.fontSize = 20;
+        nameText.fontStyle = FontStyles.Bold;
+        nameText.color = Color.white;
+        nameText.alignment = TextAlignmentOptions.Center;
+
+        RectTransform nameRect = nameTextObj.GetComponent<RectTransform>();
+        nameRect.anchorMin = new Vector2(0.02f, 0.35f);
+        nameRect.anchorMax = new Vector2(0.22f, 0.4f);
+        nameRect.offsetMin = Vector2.zero;
+        nameRect.offsetMax = Vector2.zero;
+
         // Create Dialogue Text
         GameObject dialogueTextObj = new GameObject("DialogueText");
         dialogueTextObj.transform.SetParent(dialoguePanel.transform, false);
@@ -96,7 +126,7 @@ public class AddDialoguePanelToScenes : MonoBehaviour
         dialogueText.alignment = TextAlignmentOptions.TopLeft;
 
         RectTransform textRect = dialogueTextObj.GetComponent<RectTransform>();
-        textRect.anchorMin = new Vector2(0.05f, 0.4f);
+        textRect.anchorMin = new Vector2(0.25f, 0.4f); // Moved right to make room for portrait
         textRect.anchorMax = new Vector2(0.95f, 0.95f);
         textRect.offsetMin = Vector2.zero;
         textRect.offsetMax = Vector2.zero;
@@ -128,10 +158,16 @@ public class AddDialoguePanelToScenes : MonoBehaviour
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
         var buttonsField = typeof(DialogueManager).GetField("choiceButtons",
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        var portraitField = typeof(DialogueManager).GetField("characterPortrait",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        var nameTextField = typeof(DialogueManager).GetField("characterNameText",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 
         if (panelField != null) panelField.SetValue(dialogueManager, dialoguePanel);
         if (textField != null) textField.SetValue(dialogueManager, dialogueText);
         if (buttonsField != null) buttonsField.SetValue(dialogueManager, choiceButtons);
+        if (portraitField != null) portraitField.SetValue(dialogueManager, portraitImage);
+        if (nameTextField != null) nameTextField.SetValue(dialogueManager, nameText);
 
         // Mark objects as dirty and save scene
         EditorUtility.SetDirty(dialogueManager);

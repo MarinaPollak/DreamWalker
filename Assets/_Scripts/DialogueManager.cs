@@ -11,6 +11,12 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject[] choiceButtons;
     private TextMeshProUGUI[] choiceTexts;
 
+    [Header("Character Portrait")]
+    [SerializeField] private Image characterPortrait;
+    [SerializeField] private TextMeshProUGUI characterNameText;
+    [SerializeField] private Sprite maraPortrait;
+    [SerializeField] private Sprite selenePortrait;
+
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
 
@@ -94,7 +100,11 @@ public class DialogueManager : MonoBehaviour
         if (currentStory.canContinue)
         {
             // Set text for the current dialogue line
-            dialogueText.text = currentStory.Continue();
+            string currentLine = currentStory.Continue();
+            dialogueText.text = currentLine;
+
+            // Update character portrait based on who's speaking
+            UpdateCharacterPortrait(currentLine);
 
             // Display choices, if any, for this dialogue line
             DisplayChoices();
@@ -102,6 +112,57 @@ public class DialogueManager : MonoBehaviour
         else
         {
             ExitDialogueMode();
+        }
+    }
+
+    private void UpdateCharacterPortrait(string dialogueLine)
+    {
+        // Check if the line starts with a character name
+        if (dialogueLine.StartsWith("MARA:"))
+        {
+            if (characterNameText != null)
+                characterNameText.text = "MARA";
+
+            if (characterPortrait != null)
+            {
+                if (maraPortrait != null)
+                {
+                    characterPortrait.sprite = maraPortrait;
+                    characterPortrait.color = Color.white;
+                }
+                else
+                {
+                    // Placeholder: Light blue color for Mara
+                    characterPortrait.sprite = null;
+                    characterPortrait.color = new Color(0.5f, 0.8f, 1f, 1f);
+                }
+            }
+        }
+        else if (dialogueLine.StartsWith("SELENE:"))
+        {
+            if (characterNameText != null)
+                characterNameText.text = "SELENE";
+
+            if (characterPortrait != null)
+            {
+                if (selenePortrait != null)
+                {
+                    characterPortrait.sprite = selenePortrait;
+                    characterPortrait.color = Color.white;
+                }
+                else
+                {
+                    // Placeholder: Orange color for Selene (cat)
+                    characterPortrait.sprite = null;
+                    characterPortrait.color = new Color(1f, 0.6f, 0.3f, 1f);
+                }
+            }
+        }
+        else
+        {
+            // Narrator or no specific character
+            if (characterNameText != null)
+                characterNameText.text = "";
         }
     }
 
