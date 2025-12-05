@@ -14,6 +14,7 @@ public class MaraController : MonoBehaviour
     public int dirHeld = -1;
 
     InputAction move;
+    InputAction interact;
 
     Rigidbody rb;
 
@@ -23,6 +24,9 @@ public class MaraController : MonoBehaviour
         //anim.GetComponent<Animator>();
         playerController = new PlayerController();
         move = playerController.Player.Move;
+
+        interact = playerController.Player.Interact;
+        interact.performed += Interact;
     }
 
     void OnEnable()
@@ -62,5 +66,28 @@ public class MaraController : MonoBehaviour
             anim.Play("WalkLeft");
         }*/
         transform.position = transform.position + (direction * speed * Time.deltaTime);
+    }
+
+    void Interact(InputAction.CallbackContext context)
+    {
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag == "Interactable")
+        {
+            interact.Enable();
+        }
+        print("Enter");
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.tag == "Interactable")
+        {
+            interact.Disable();
+        }
+        print("Exit");
     }
 }
