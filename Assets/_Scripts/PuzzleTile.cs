@@ -18,7 +18,7 @@ public class PuzzleTile : MonoBehaviour
         if (image == null)
             image = GetComponent<Image>();
 
-        manager = FindObjectOfType<SlidingPuzzle>();
+        manager = FindFirstObjectByType<SlidingPuzzle>();
         button = GetComponent<Button>();
         button.onClick.AddListener(OnTileClicked);
     }
