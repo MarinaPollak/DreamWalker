@@ -15,11 +15,11 @@ public class MaraController : MonoBehaviour
 
     InputAction move;
 
-    Rigidbody2D rb;
+    Rigidbody rb;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
         //anim.GetComponent<Animator>();
         playerController = new PlayerController();
         move = playerController.Player.Move;
