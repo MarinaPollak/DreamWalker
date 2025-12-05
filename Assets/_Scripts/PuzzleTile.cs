@@ -14,6 +14,10 @@ public class PuzzleTile : MonoBehaviour
 
     void Start()
     {
+        //  Auto-assign image if missing
+        if (image == null)
+            image = GetComponent<Image>();
+
         manager = FindObjectOfType<SlidingPuzzle>();
         button = GetComponent<Button>();
         button.onClick.AddListener(OnTileClicked);

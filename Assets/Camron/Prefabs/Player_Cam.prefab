@@ -337,3 +337,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 8753054943965535253}
   smoothSpeed: 5
+  radius: 0.4
+  collisionOffset: 0.3
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0

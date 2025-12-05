@@ -1,24 +1,31 @@
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 public class SlidingPuzzle : MonoBehaviour
 {
     public GameObject tilePrefab;
-    public Sprite[] sliceImages; // Drag sliced sprites here!
-    public Transform tileParent; // The Grid Layout Group area
+    public Sprite[] sliceImages;
+    public Transform tileParent;
     public int gridSize = 3;
+    public GameObject puzzleUI; // reference to your UI panel
+
 
     [HideInInspector] public List<PuzzleTile> tiles = new List<PuzzleTile>();
     private PuzzleTile selectedTile = null;
-    void OnEnable() // Whenever puzzle opens, rebuild
+
+    void OnEnable()
     {
         BuildPuzzle();
         ShuffleTiles();
+        UpdateTilePositions();   //
     }
 
-    void OnDisable() // Whenever puzzle closes, clean up
+    void OnDisable()
     {
-        foreach (Transform child in tileParent) Destroy(child.gameObject);
+        foreach (Transform child in tileParent)
+            Destroy(child.gameObject);
+
         tiles.Clear();
     }
 
@@ -47,19 +54,9 @@ public class SlidingPuzzle : MonoBehaviour
             tiles[i].currentIndex = tiles[rand].currentIndex;
             tiles[rand].currentIndex = t;
         }
+
+        UpdateTilePositions(); //  Apply changes to grid
     }
-
-    public void CheckIfSolved()
-    {
-        foreach (var tile in tiles)
-        {
-            if (tile.correctIndex != tile.currentIndex) return;
-        }
-
-        Debug.Log("Puzzle Solved!");
-        gameObject.SetActive(false); // Hide puzzle once solved
-    }
-
 
     void UpdateTilePositions()
     {
@@ -70,26 +67,6 @@ public class SlidingPuzzle : MonoBehaviour
             tile.row = tile.currentIndex / gridSize;
             tile.col = tile.currentIndex % gridSize;
         }
-    }
-
-    void HighlightAdjacent(PuzzleTile tile)
-    {
-        foreach (var t in tiles)
-        {
-            var img = t.image;
-            img.color = Color.white; // reset all tiles
-
-            if (IsNeighbor(tile, t))
-                img.color = Color.yellow; // highlight neighbors
-        }
-
-        tile.image.color = Color.green; // selected tile
-    }
-
-    bool IsNeighbor(PuzzleTile a, PuzzleTile b)
-    {
-        if (a == b) return false;
-        return (Mathf.Abs(a.row - b.row) + Mathf.Abs(a.col - b.col)) == 1;
     }
 
     public void TileClicked(PuzzleTile tile)
@@ -113,18 +90,54 @@ public class SlidingPuzzle : MonoBehaviour
         }
     }
 
+    bool IsNeighbor(PuzzleTile a, PuzzleTile b)
+    {
+        if (a == b) return false;
+        return (Mathf.Abs(a.row - b.row) + Mathf.Abs(a.col - b.col)) == 1;
+    }
+
     void SwapTiles(PuzzleTile a, PuzzleTile b)
     {
         int temp = a.currentIndex;
         a.currentIndex = b.currentIndex;
         b.currentIndex = temp;
 
-        UpdateTilePositions();
+        UpdateTilePositions(); // Required after swap
+    }
+
+    void HighlightAdjacent(PuzzleTile tile)
+    {
+        foreach (var t in tiles)
+        {
+            t.image.color = Color.white;
+
+            if (IsNeighbor(tile, t))
+                t.image.color = Color.yellow;
+        }
+
+        tile.image.color = Color.green;
     }
 
     void ResetColors()
     {
         foreach (var t in tiles)
             t.image.color = Color.white;
+    }
+    public void CheckIfSolved()
+    {
+        foreach (var tile in tiles)
+        {
+            if (tile.correctIndex != tile.currentIndex)
+                return;
+        }
+
+        Debug.Log("Sliding Puzzle Completed!");
+        puzzleUI.SetActive(false);
+    }
+
+    public void ClosePuzzle()
+    {
+        bool isOpen = puzzleUI.activeSelf;
+        puzzleUI.SetActive(!isOpen);   // hides the puzzle UI
     }
 }
