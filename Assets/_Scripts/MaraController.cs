@@ -7,6 +7,11 @@ public class MaraController : MonoBehaviour
 {
     [SerializeField] float speed = 5.0f;
 
+    [Header("Movement Boundaries")]
+    [SerializeField] bool useBoundaries = true;
+    [SerializeField] float minX = -3f;
+    [SerializeField] float maxX = 0.9f;
+
     PlayerController playerController;
 
     private Animator anim;
@@ -65,7 +70,15 @@ public class MaraController : MonoBehaviour
             anim.speed = 0;
             anim.Play("WalkLeft");
         }*/
-        transform.position = transform.position + (direction * speed * Time.deltaTime);
+        Vector3 newPosition = transform.position + (direction * speed * Time.deltaTime);
+
+        // Clamp position to boundaries if enabled
+        if (useBoundaries)
+        {
+            newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
+        }
+
+        transform.position = newPosition;
     }
 
     void Interact(InputAction.CallbackContext context)
@@ -79,7 +92,7 @@ public class MaraController : MonoBehaviour
         {
             interact.Enable();
         }
-        print("Enter");
+        // Debug: print("Enter");
     }
 
     private void OnTriggerExit(Collider other)
@@ -88,6 +101,6 @@ public class MaraController : MonoBehaviour
         {
             interact.Disable();
         }
-        print("Exit");
+        // Debug: print("Exit");
     }
 }
