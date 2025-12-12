@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5639721889788752271}
-  - component: {fileID: -1982469578138809972}
+  - component: {fileID: 2736409265139150434}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1982469578138809972
+--- !u!114 &2736409265139150434
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cf4caffd4b3ae4dbe1e2e651862082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnID: 
+  spawnID: Room1Enter
