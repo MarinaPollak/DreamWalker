@@ -49,6 +49,7 @@ public class DialogueTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+            print("Hit");
         }
     }
 
