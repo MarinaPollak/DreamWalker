@@ -18,7 +18,4 @@ MARA: (glances around, embarrassed) It's not much... but it's mine.
 
 MARA: And, uh... I guess it's yours now too.
 
-* [Look around the apartment]
-    -> END
-* [Check on Selene]
-    -> END
+-> END

@@ -93,6 +93,18 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+
+        // Hide all choice buttons
+        foreach (GameObject button in choiceButtons)
+        {
+            button.SetActive(false);
+        }
+
+        // Clear character info
+        if (characterNameText != null)
+            characterNameText.text = "";
+
+        Debug.Log("Dialogue ended - panel hidden");
     }
 
     private void ContinueStory()

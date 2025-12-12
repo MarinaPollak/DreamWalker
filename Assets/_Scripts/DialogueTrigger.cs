@@ -31,7 +31,7 @@ public class DialogueTrigger : MonoBehaviour
             // Check for interaction input (E key or Space)
             if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("Triggering dialogue!");
+                Debug.Log("Triggering dialogue from: " + gameObject.name);
                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
             }
         }
@@ -41,6 +41,15 @@ public class DialogueTrigger : MonoBehaviour
             {
                 visualCue.SetActive(false);
             }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        // Keep playerInRange true while player stays in trigger
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
         }
     }
 
